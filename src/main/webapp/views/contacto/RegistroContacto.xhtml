@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui">
+
+    <body>
+
+        <ui:composition template="/WEB-INF/template/template.xhtml">
+
+            <ui:define name="content">
+            
+                <f:metadata>
+                	<o:viewParam name="contacto" value="#{RegistroContactoBean.contacto}"/>
+                    <f:viewAction action="#{RegistroContactoBean.inicializar}"/>
+                </f:metadata>
+                
+                <p:growl id="msg" autoUpdate="true" showDetail="false" life="2000"/>
+                
+                <h:form id="formInsertar">
+
+                    <p:toolbar style="margin-top: 20px">
+                        <p:toolbarGroup>
+                            <p:commandButton value="Guardar" icon="fa fa-check" action="#{RegistroContactoBean.guardar}" update=":formInsertar :msg"/>
+                            <p:separator/>                            
+                            <p:button value="Cancelar" icon="fa fa-ban" outcome="RegistroContacto" />
+                        </p:toolbarGroup>
+
+                        <p:toolbarGroup align="right">
+                            <p:button icon="fa fa-undo" outcome="BuscarContacto"/>
+                        </p:toolbarGroup>
+                    </p:toolbar>
+
+                    <p:panelGrid id="panel" columns="4" columnClasses="rotulo, campob, rotulo, campob" style="width: 100%; margin-top: 20px">
+
+                        <f:facet name="header">
+                            #{RegistroContactoBean.tituloEditar() ? 'Contacto Editar' : 'Contacto Nuevo'}
+                        </f:facet>                         
+                         
+                         <p:outputLabel for="txtnombre" value="Nombres:"/>
+                         <p:inputText id="txtnombre" value="#{RegistroContactoBean.contacto.nombre}" converter="omnifaces.ToUpperCaseConverter"/>
+                         
+                         <p:outputLabel for="txtprimernombre" value="Apellidos :"/>
+                         <p:inputText id="txtprimernombre" value="#{RegistroContactoBean.contacto.apellido}" converter="omnifaces.ToUpperCaseConverter"/>
+
+                         <p:outputLabel for="txtdireccion" value="Dirección:"/>
+                         <p:inputText id="txtdireccion" value="#{RegistroContactoBean.contacto.direccion}" converter="omnifaces.ToUpperCaseConverter"/>
+
+                         <p:outputLabel for="txttelefono" value="Teléfono:"/>                         
+                         <p:inputNumber id="txttelefono" value="#{RegistroContactoBean.contacto.telefono}"/>
+                         
+                    </p:panelGrid>
+                </h:form>
+                   
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

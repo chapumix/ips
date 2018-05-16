@@ -1,0 +1,156 @@
+body {
+    background-color: #F3F3F3;
+    font-size: 12px;
+    font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    color: #000000;  
+    margin: 10px;
+}
+
+h1 {
+    font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    border-bottom: 1px solid #AFAFAF; 
+    font-size:  16px;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+    color: #D20005;
+}
+
+#top .logo{
+	/*background: green;*/
+	float: left;
+	margin-top: -12px;	
+}
+
+#top .ajax-status{
+    background-color:#F3F3F3;
+    position: fixed;
+    bottom:30px;
+    right: 10px;        
+    z-index: 5;    
+}
+
+
+#top .menu_principal{
+	position: relative;
+	float: right;
+	margin-top: -20px; 
+	margin-right: -20px;
+	/*z-index: 99999;*/
+}
+
+#top .menu_sistema{
+	background: none;
+}
+
+#bottom .toolbar{
+	width: 100%;
+	margin-left: -10px;	
+}
+
+#bottom .toolbar .toolbarpiepagina{
+	-webkit-border-radius: 0px; 
+    -moz-border-radius: 0px; 
+    border-radius: 0px;	
+}
+
+
+#bottom .toolbar .toolbarpiepagina #textoversion1{
+ 	font-size: 12px;
+ 	color: #00000E;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 18px;
+    margin-top: 1px;
+	
+}
+
+#bottom .toolbar .toolbarpiepagina #textoversion2{
+	font-size: 11px;	
+	color: #00000E;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 18px;
+	
+}
+
+#content .botonesalinear{
+	float: right;
+}
+
+#content .otros{
+    width: 20px !important;
+    height: 20px !important;
+    margin-left: -3px;
+}
+
+#content .eliminardetalle{
+    width: 20px !important;
+    height: 20px !important;
+    margin-left: -3px;
+}
+
+
+/*se usa para cambiar el tamaño de los componentes primefaces*/
+.ui-widget, .ui-widget .ui-widget {
+font-size: 97% !important;
+}
+
+/*se usa para cambiar el tamaño de las columnas de los datatables de primefaces usando la etiqueta columnClasses*/
+.rotulo {
+	width: 150px
+}
+
+.campob{
+	width: 300px;
+}
+
+/*iconos varios*/
+.icono-nuevo{
+    background-image: url("../resources/img/add.png") !important;
+}
+
+.icono-editar{
+    background-image: url("../resources/img/edit.png") !important;
+}
+
+.icono-guardar{
+    background-image: url("../resources/img/save.png") !important;
+}
+
+.icono-eliminar{
+    background-image: url("../resources/img/delete.png") !important;
+}
+
+.icono-cancelar{
+    background-image: url("../resources/img/cancel.png") !important;
+}
+
+.icono-regresar{
+    background-image: url("../resources/img/back.png") !important;
+}
+
+.icono-abrirdialogo{
+    background-image: url("../resources/img/open.png") !important;
+}
+
+.icono-seleccionar{
+    background-image: url("../resources/img/select.png") !important;
+}
+
+.icono-agregarp{
+    background-image: url("../resources/img/addp.png") !important;   
+}
+
+.icono-otros{
+    background-image: url("../resources/img/otros.png") !important;
+}
+
+.icono-eliminardetalle{
+    background-image: url("../resources/img/deletedetalles.png") !important;   
+}
+
+.ui-menuitem{
+	background: black !important;
+}
+.center{
+	margin: 0 auto !important;
+}

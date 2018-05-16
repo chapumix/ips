@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:sec="http://www.springframework.org/security/tags">
+
+<body>
+
+	<ui:composition template="/WEB-INF/template/template.xhtml">
+
+		<ui:define name="content">
+
+			<p:growl id="msg" autoUpdate="true" showDetail="false" life="2000"/>
+
+			<h:form id="formMostrarContacto">
+
+				<p:toolbar style="margin-top: 20px">
+					<p:toolbarGroup>
+						<p:button value="Nuevo" outcome="RegistroContacto" icon="fa fa-id-card-o" title="Nuevo" />
+					</p:toolbarGroup>
+				</p:toolbar>
+
+				<p:dataTable id="tablaMostrarContacto" var="contacto" value="#{BuscarContactoBean.listado}" emptyMessage="No hay datos disponibles" paginator="true" rows="15" paginatorPosition="bottom" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+				
+					<f:facet name="header">
+                            Contacto
+                    </f:facet>
+                    
+                    <p:column headerText="Nombre" filterBy="#{contacto.nombre}" filterMatchMode="contains" style="text-align: center; width: 150px;">
+						<p:outputLabel value="#{afiliado.identificacion}" />
+					</p:column>
+
+					<p:column headerText="Apellido" filterBy="#{contacto.apellido}" filterMatchMode="contains">
+						<p:outputLabel value="#{contacto.apellido}" />
+					</p:column>
+
+					<p:column headerText="Dirección">
+						<p:outputLabel value="#{contacto.direccion}" />
+					</p:column>
+					
+					<p:column headerText="Teléfono">
+						<p:outputLabel value="#{contacto.telefono}" />
+					</p:column>
+
+					<p:column headerText="" style="text-align: center; width: 80px;">
+						<sec:authorize access="hasRole('EDITAR_CONTACTO')">
+						<p:button outcome="RegistroContacto" icon="fa fa-pencil" title="Editar">
+							<f:param name="contacto" value="#{contacto.idcontacto}"/>
+						</p:button>
+						</sec:authorize>
+						
+						<sec:authorize access="hasRole('ELIMINAR_CONTACTO')">
+						<p:commandButton icon="fa fa-trash" title="Eliminar" oncomplete="PF('dlgEliminar').show();" process="@this" update=":formMostrarContacto:formEliminar">
+							<f:setPropertyActionListener value="#{contacto}" target="#{BuscarContactoBean.contactoseleccionado}"/>
+						</p:commandButton>
+						</sec:authorize>
+					</p:column>
+					
+					
+								
+				</p:dataTable>				
+								
+				<p:confirmDialog header="Eliminar Datos" message="Esta seguro de eliminar el registro?" widgetVar="dlgEliminar" severity="alert" showEffect="slide" hideEffect="blind">
+					<h:panelGroup id="formEliminar" styleClass="botonesalinear"> 	
+						<p:commandButton value="Aceptar" oncomplete="PF('dlgEliminar').hide();" action="#{BuscarContactoBean.eliminar}" process="@this" update=":formMostrarContacto:tablaMostrarContacto"/>
+						<p:button value="Cancelar" onclick="PF('dlgEliminar').hide(); return false;" />
+					</h:panelGroup>
+				</p:confirmDialog>
+					
+
+			</h:form>
+
+		</ui:define>
+
+	</ui:composition>
+
+</body>
+</html>
